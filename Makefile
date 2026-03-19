@@ -21,6 +21,9 @@ GOOGLE_WORKSPACE_SKILLS := \
 .PHONY: agents-install agents agents-cli agents-skills agents-claude-plugins
 .PHONY: agents-skills-install agents-skills-list agents-skills-check-npx
 
+ai: bootstrap
+	@$(MAKE) agents-install
+
 bootstrap: mise-package mise-install
 
 mise-package:
@@ -41,9 +44,6 @@ endif
 mise-install: mise-package
 	@echo "Install mise tools"
 	@mise install --quiet
-
-ai: bootstrap
-	@$(MAKE) agents-install
 
 agents-install: agents agents-cli agents-skills agents-claude-plugins
 
