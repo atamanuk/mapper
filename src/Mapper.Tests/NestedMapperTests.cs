@@ -197,6 +197,16 @@ public sealed class NestedMapperTests
     }
 
     [Fact]
+    public void Mapper_Throws_When_Two_Mappings_Exist_For_The_Same_Type_Pair()
+    {
+        var exception = Assert.Throws<InvalidOperationException>(() => new global::Mapper.Mapper(new DuplicateTypePairProfile()));
+
+        Assert.Contains("Duplicate mapping", exception.Message);
+        Assert.Contains(typeof(SourceEnvelope).FullName!, exception.Message);
+        Assert.Contains(typeof(TargetEnvelope).FullName!, exception.Message);
+    }
+
+    [Fact]
     public void Mapper_Throws_For_Multi_Source_Nested_MapFrom()
     {
         var exception = Assert.Throws<NotSupportedException>(() => new global::Mapper.Mapper(new UnsupportedNestedExpressionProfile()));
@@ -243,6 +253,19 @@ public sealed class NestedMapperTests
 
         Assert.Contains("/Person", exception.Message);
         Assert.Contains(typeof(TargetPerson).FullName!, exception.Message);
+    }
+
+    [Fact]
+    public void Map_Throws_Clear_Error_When_Path_Continues_After_Leaf_Member()
+    {
+        var mapper = new global::Mapper.Mapper(new NestedConversionProfile());
+        var patch = CreatePatch<SourceEnvelope>(Operation<SourceEnvelope>("replace", "/Person/Age/Value", value: 42));
+
+        var exception = Assert.Throws<InvalidOperationException>(() => mapper.Map<SourceEnvelope, ConversionTargetEnvelope>(patch));
+
+        Assert.Contains("/Person/Age/Value", exception.Message);
+        Assert.Contains("/Person/Age", exception.Message);
+        Assert.Contains("continues after a leaf member", exception.Message);
     }
 
     private static JsonPatchDocument<TModel> CreatePatch<TModel>(params Operation<TModel>[] operations)
@@ -409,6 +432,15 @@ public sealed class NestedMapperTests
         {
             CreateMap<SourceEnvelope, PriorityTargetEnvelope>()
                 .ForMember(target => target.ContactName, options => options.MapFrom(source => source.Person.Name + source.Person.Alias));
+        }
+    }
+
+    private sealed class DuplicateTypePairProfile : global::Mapper.MapProfile
+    {
+        public DuplicateTypePairProfile()
+        {
+            CreateMap<SourceEnvelope, TargetEnvelope>();
+            CreateMap<SourceEnvelope, TargetEnvelope>();
         }
     }
 

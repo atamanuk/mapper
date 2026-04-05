@@ -22,7 +22,12 @@ public sealed class Mapper
         foreach (var definition in profiles.SelectMany(static profile => profile.Definitions))
         {
             var typePair = new TypePair(definition.SourceType, definition.TargetType);
-            _compiledMaps[typePair] = definition.Compile(ResolveCompiledMap);
+            var compiledMap = definition.Compile(ResolveCompiledMap);
+            if (!_compiledMaps.TryAdd(typePair, compiledMap))
+            {
+                throw new InvalidOperationException(
+                    $"Duplicate mapping for {definition.SourceType.FullName} -> {definition.TargetType.FullName}.");
+            }
         }
     }
 
@@ -147,6 +152,13 @@ internal sealed class CompiledMap<TSource, TTarget> : ICompiledMap
                     explicitRule.TargetType);
             }
 
+            EnsurePathCanContinue(
+                explicitRule.SourcePath,
+                explicitRule.TargetPath,
+                explicitRule.SourceType,
+                explicitRule.TargetType,
+                originalPath);
+
             return ResolveNested(
                 explicitRule.TargetPath,
                 explicitRule.SourceType,
@@ -176,6 +188,13 @@ internal sealed class CompiledMap<TSource, TTarget> : ICompiledMap
                 propertyMap.SourceType,
                 propertyMap.TargetType);
         }
+
+        EnsurePathCanContinue(
+            propertyMap.SourcePath,
+            propertyMap.TargetPath,
+            propertyMap.SourceType,
+            propertyMap.TargetType,
+            originalPath);
 
         return ResolveNested(
             propertyMap.TargetPath,
@@ -258,6 +277,23 @@ internal sealed class CompiledMap<TSource, TTarget> : ICompiledMap
 
         throw new NotSupportedException(
             $"Path '{originalPath}' resolves to non-leaf target type {targetType.FullName} for mapping {_typePair.Source.FullName} -> {_typePair.Target.FullName}.");
+    }
+
+    private void EnsurePathCanContinue(
+        string sourcePath,
+        string targetPath,
+        Type sourceType,
+        Type targetType,
+        string originalPath)
+    {
+        if (!PathLeafTypes.IsSupported(sourceType) && !PathLeafTypes.IsSupported(targetType))
+        {
+            return;
+        }
+
+        throw CreatePathResolutionException(
+            originalPath,
+            $"Source path '{originalPath}' cannot be resolved because '{sourcePath}' maps to '{targetPath}', and the path continues after a leaf member.");
     }
 
     private InvalidOperationException CreatePathResolutionException(string originalPath, string message) =>
