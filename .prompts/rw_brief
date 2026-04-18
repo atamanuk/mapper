@@ -1,3 +1,7 @@
+Сначала определи `issue_number` из имени текущей Git-ветки.
+Используй число из имени ветки по шаблону `issue/{issue_number}`.
+Если имя текущей ветки не соответствует шаблону `issue/{issue_number}`, остановись и явно сообщи, что не удалось определить `issue_number`.
+
 Прочитай `memory-bank/features/{issue_number}/brief.md`.
 
 Проверь brief на:

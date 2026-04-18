@@ -11,8 +11,10 @@
 - конвертацию значений между разными типами;
 - вычисляемые мэппинги;
 - вложенные пути `path` и `from`;
+- demo-сценарий `Map -> Apply` на `IndexModel`, включая видимые ошибки мэппинга и применения;
 - ошибки конфигурации и неподдерживаемые JSON Pointer.
 
 Основные тестовые файлы:
 - `src/Mapper.Tests/MapperTests.cs` — базовые сценарии верхнего уровня;
 - `src/Mapper.Tests/NestedMapperTests.cs` — вложенные пути, приоритеты правил и негативные кейсы.
+- `src/Mapper.Tests/DemoApplyTests.cs` — двухшаговый demo-flow `Map`/`Apply` и ошибки применения patch к `Target`.

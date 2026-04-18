@@ -6,10 +6,11 @@
 
 <section class="hero">
     <p class="eyebrow">Mapper.Demo</p>
-    <h1>Map a source patch into a target patch.</h1>
+    <h1>Map a source patch, then apply it to a target object.</h1>
     <p class="lede">
         This demo accepts a Json Patch for <code>Source</code>, runs it through the local <code>Mapper</code> library,
-        and shows the serialized <code>JsonPatchDocument&lt;Target&gt;</code> result.
+        shows the serialized <code>JsonPatchDocument&lt;Target&gt;</code>, and can apply that mapped patch to a fresh
+        <code>Target</code> instance on the same page.
     </p>
 </section>
 
@@ -42,37 +43,69 @@
         <div class="form-header">
             <div>
                 <h2>Json Patch Input</h2>
-                <p class="panel-copy">Edit the example or paste your own patch array.</p>
+                <p class="panel-copy">Edit the example or paste your own patch array, then run either step explicitly.</p>
             </div>
-            <button type="submit" class="map-button">Map</button>
+            <div class="button-row">
+                <button type="submit" asp-page-handler="Map" class="action-button">Map</button>
+                <button type="submit" asp-page-handler="Apply" class="action-button secondary-action">Apply</button>
+            </div>
         </div>
 
         <label asp-for="PatchInput" class="sr-only">Json Patch input</label>
         <textarea asp-for="PatchInput" class="code-box" spellcheck="false"></textarea>
 
-        @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+        @if (!string.IsNullOrWhiteSpace(Model.MapErrorMessage))
         {
-            <div class="message error-message" role="alert">@Model.ErrorMessage</div>
+            <div class="message error-message" role="alert">@Model.MapErrorMessage</div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(Model.ApplyErrorMessage))
+        {
+            <div class="message error-message" role="alert">@Model.ApplyErrorMessage</div>
         }
     </form>
 
-    <section class="panel result-panel">
-        <div class="form-header">
-            <div>
-                <h2>Mapped Result</h2>
-                <p class="panel-copy">Successful mapping keeps you on the same page and prints JSON below.</p>
+    <div class="result-stack">
+        <section class="panel result-panel">
+            <div class="form-header">
+                <div>
+                    <h2>Mapped Result</h2>
+                    <p class="panel-copy">Successful mapping keeps you on the same page and prints the target patch below.</p>
+                </div>
             </div>
-        </div>
 
-        @if (!string.IsNullOrWhiteSpace(Model.ResultJson))
-        {
-            <pre class="code-box result-box"><code>@Model.ResultJson</code></pre>
-        }
-        else
-        {
-            <div class="result-placeholder">
-                Submit the example patch to see <code>/DisplayName</code> and <code>/Age</code> in the mapped output.
+            @if (!string.IsNullOrWhiteSpace(Model.ResultJson))
+            {
+                <pre class="code-box result-box"><code>@Model.ResultJson</code></pre>
+            }
+            else
+            {
+                <div class="result-placeholder">
+                    Submit the example patch to see <code>/DisplayName</code> and <code>/Age</code> in the mapped output.
+                </div>
+            }
+        </section>
+
+        <section class="panel result-panel">
+            <div class="form-header">
+                <div>
+                    <h2>Applied Target State</h2>
+                    <p class="panel-copy">Each <code>Apply</code> starts from the same fixed target object shown below.</p>
+                </div>
             </div>
-        }
-    </section>
+
+            <pre class="code-box result-box initial-target-box"><code>@Model.InitialTargetJson</code></pre>
+
+            @if (!string.IsNullOrWhiteSpace(Model.ApplyResultJson))
+            {
+                <pre class="code-box result-box"><code>@Model.ApplyResultJson</code></pre>
+            }
+            else
+            {
+                <div class="result-placeholder">
+                    Run <code>Apply</code> to map the current patch, apply it to a fresh <code>Target</code>, and inspect the final object state.
+                </div>
+            }
+        </section>
+    </div>
 </section>
