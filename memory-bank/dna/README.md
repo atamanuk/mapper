@@ -11,6 +11,7 @@ status: active
 
 DNA — конституция проектной документации. Определяет принципы, правила документации, frontmatter schema, lifecycle.
 
+- [Базовые правила](main.md) — локальные правила выполнения проектных операций и проверки документации.
 - [Principles](principles.md) — фундаментальные принципы проекта: SSoT, атомарность, progressive disclosure. Читать первым.
 - [Document Governance](governance.md) — SSoT implementation, dependency tree. Отвечает на вопрос: кто владеет фактом.
 - [Frontmatter Schema](frontmatter.md) — schema полей frontmatter.

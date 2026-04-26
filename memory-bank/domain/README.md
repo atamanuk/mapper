@@ -13,6 +13,5 @@ audience: humans_and_agents
 
 - [Project Problem Statement](problem.md) — общий продуктовый контекст и top-level outcomes проекта. Не заменяет PRD, а служит upstream-слоем для него и для feature-спек.
 - [Project Architecture](architecture.md) — структура репозитория, расположение solution и базовые команды сборки через `dotnet`.
-- [Frontend](frontend.md) — шаблон описания UI-поверхностей, design system и i18n-слоя. Читать при работе с интерфейсом.
 - [Mapper.Demo Problem Statement](demo/problem.md) — назначение demo-приложения, ограниченный сценарий и стартовый Json Patch пример.
 - [Mapper.Demo Architecture](demo/architecture.md) — архитектура demo-приложения, его Razor Page flow, mapping profile и helper-сервисы.
