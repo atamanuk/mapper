@@ -1,19 +1,18 @@
-# Build
+---
+title: Mapper.Demo Problem Statement
+doc_kind: domain
+doc_function: canonical
+purpose: Назначение demo-приложения Mapper.Demo, его ограниченный сценарий и стартовый пример Json Patch.
+derived_from:
+  - ../problem.md
+status: active
+audience: humans_and_agents
+canonical_for:
+  - mapper_demo_problem_statement
+  - mapper_demo_scenario
+---
 
-Каноническая структура репозитория:
-- `src/Mapper.sln` — основное solution проекта;
-- `src/Mapper` — библиотека;
-- `src/Mapper.Tests` — отдельный тестовый проект.
-- `src/Mapper.Demo` — демонстрационный Razor Pages проект для ручной проверки мэппинга.
-
-Для обычной сборки достаточно стандартных CLI-команд `dotnet`. 
-Отдельный build-скрипт для повседневной сборки в репозитории не нужен и не используется как основной путь.
-
-Основные команды:
-- `dotnet build src/Mapper.sln` - сборка проекта
-- `dotnet test src/Mapper.sln` - запуск тестов
-
-## Demo
+# Mapper.Demo Problem Statement
 
 `Mapper.Demo` подключается к `src/Mapper.sln`, поэтому его сборка входит в обычный `dotnet build src/Mapper.sln`.
 
