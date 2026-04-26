@@ -1,3 +1,18 @@
+---
+title: Project Problem Statement
+doc_kind: domain
+doc_function: canonical
+purpose: Каноничное описание продукта, проблемного пространства и целевых outcomes. Читать перед feature-спеками, чтобы не повторять общий контекст в каждой delivery-единице.
+derived_from:
+  - ../dna/governance.md
+status: active
+audience: humans_and_agents
+canonical_for:
+  - project_problem_statement
+  - product_context
+  - top_level_outcomes
+---
+
 # Project Overview
 
 Библиотека `Mapper` преобразует `JsonPatchDocument<TSource>` в `JsonPatchDocument<TTarget>`. 

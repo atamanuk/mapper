@@ -9,7 +9,7 @@ audience: humans_and_agents
 
 ## Аннотированный индекс
 
-- [project/overview.md](project/overview.md)
+- [domain/problem.md](domain/problem.md)
   **Что:** назначение библиотеки, целевая платформа, доменная задача и публичные сущности `Mapper` и `MapProfile`.
   **Читать, чтобы:** быстро понять, что именно делает проект и какие основные API считаются центральными.
 
@@ -17,7 +17,7 @@ audience: humans_and_agents
   **Что:** каноническая структура репозитория, расположение solution и базовые команды сборки через `dotnet`.
   **Читать, чтобы:** сориентироваться в устройстве репозитория и запускать сборку без догадок о путях и скриптах.
 
-- [project/demo_architecture.md](project/demo_architecture.md)
+- [domain/demo/architecture.md](domain/demo/architecture.md)
   **Что:** архитектура demo-приложения `Mapper.Demo`: composition root, Razor Page, профиль мэппинга, модели и вспомогательные сервисы.
   **Читать, чтобы:** быстро понять поток данных demo-сценария и где в приложении находятся точки расширения.
 

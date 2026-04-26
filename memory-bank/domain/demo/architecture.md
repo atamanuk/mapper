@@ -1,3 +1,16 @@
+---
+title: Mapper.Demo Architecture
+doc_kind: domain
+doc_function: canonical
+purpose: Архитектура demo-приложения Mapper.Demo и его пользовательского потока ручной проверки мэппинга.
+derived_from:
+  - ../problem.md
+status: active
+audience: humans_and_agents
+canonical_for:
+  - mapper_demo_architecture
+---
+
 # Mapper.Demo Architecture
 
 `Mapper.Demo` — демонстрационное ASP.NET Core приложение на Razor Pages, расположенное в `src/Mapper.Demo`.
