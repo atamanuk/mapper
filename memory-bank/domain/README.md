@@ -12,6 +12,6 @@ audience: humans_and_agents
 # Domain Documentation Index
 
 - [Project Problem Statement](problem.md) — общий продуктовый контекст и top-level outcomes проекта. Не заменяет PRD, а служит upstream-слоем для него и для feature-спек.
-- [Project Architecture](architecture.md) — структура репозитория, расположение solution и базовые команды сборки через `dotnet`.
+- [Project Architecture](architecture.md) — структура репозитория и расположение solution. Инженерные команды находятся в [../engineering/README.md](../engineering/README.md).
 - [Mapper.Demo Problem Statement](demo/problem.md) — назначение demo-приложения, ограниченный сценарий и стартовый Json Patch пример.
 - [Mapper.Demo Architecture](demo/architecture.md) — архитектура demo-приложения, его Razor Page flow, mapping profile и helper-сервисы.
