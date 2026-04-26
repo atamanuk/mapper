@@ -1,6 +1,13 @@
-# Memory Bank
+---
+title: Template Documentation Index
+doc_kind: project
+doc_function: index
+purpose: Корневая навигация по шаблонному memory-bank. Читать сначала, чтобы понять структуру и точки адаптации под конкретный проект.
+status: active
+audience: humans_and_agents
+---
 
-Стартовая точка для проектового контекста и базовой навигации по репозиторию.
+## Аннотированный индекс
 
 - [project/overview.md](project/overview.md)
   **Что:** назначение библиотеки, целевая платформа, доменная задача и публичные сущности `Mapper` и `MapProfile`.
@@ -25,7 +32,6 @@
 - [dna/README.md](dna/README.md)
   **Что:** базовые правила для работы над проектом
   **Читать, чтобы:** быстро проверить, что все текущие изменения удовлетворяют общим правилам
-
 
 - [features/{task_number}/spec.md](features/{task_number}/spec.md)
   **Что:** специфифкация к задаче task_number
