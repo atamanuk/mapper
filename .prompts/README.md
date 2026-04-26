@@ -15,18 +15,19 @@ start_task 9
 ```
 
 ```text
-mk_spec
+make_spec
 ```
 
 ## Шаблоны
 - `start_task` — читает GitHub issue и создаёт `brief.md`.
-- `rw_brief` — ревьюит `brief.md`.
-- `mk_spec` — строит `spec.md` из `brief.md`.
-- `rw_spec` — ревьюит `spec.md`.
-- `mk_plan` — строит `plan.md` из `spec.md`.
-- `rw_plan` — проверяет `plan.md` на соответствие `spec.md`.
-- `gnd_plan` — проверяет `plan.md` на соответствие кодовой базе.
+- `review_brief` — ревьюит `brief.md`.
+- `make_spec` — строит `spec.md` из `brief.md`.
+- `review_spec` — ревьюит `spec.md`.
+- `make_plan` — строит `plan.md` из `spec.md`.
+- `review_plan` — проверяет `plan.md` на соответствие `spec.md`.
+- `ground_plan` — проверяет `plan.md` на соответствие кодовой базе.
 - `implement` — реализует `plan.md`.
+- `check_links` — проверяет достижимость файлов `memory-bank` из `memory-bank/README.md` и отсутствие битых markdown-ссылок.
 
 ## Артефакты
 Все шаблоны работают относительно директории:

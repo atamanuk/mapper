@@ -29,6 +29,6 @@
 
 ## Шаг 5. Обновить документацию по demo-сценарию
 Ожидаемый технический результат:
-- В [memory-bank/project/demo_architecture.md](/home/me/projects/mapper/memory-bank/project/demo_architecture.md:1) отражён новый двухшаговый пользовательский поток `Map` -> `Apply` в `Mapper.Demo`.
+- В [memory-bank/domain/demo/architecture.md](/home/me/projects/mapper/memory-bank/domain/demo/architecture.md:1) отражён новый двухшаговый пользовательский поток `Map` -> `Apply` в `Mapper.Demo`.
 - Документация описывает, что `IndexModel` теперь не только строит `JsonPatchDocument<Target>`, но и умеет применять mapped patch к фиксированному экземпляру `Target` с показом результата на той же странице.
 - В описании потока данных и UI-слоя явно зафиксировано, что ошибки мэппинга и ошибки применения остаются наблюдаемыми на `Index`.

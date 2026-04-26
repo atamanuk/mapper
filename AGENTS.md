@@ -1,1 +1,1 @@
-читай memory-bank/index.md
+читай memory-bank/README.md
